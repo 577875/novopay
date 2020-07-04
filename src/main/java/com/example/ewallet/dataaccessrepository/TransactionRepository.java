@@ -9,10 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.ewallet.models.Transaction;
 
-/**
- * @author Deepak Garg
- *
- */
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
 	/**
@@ -22,7 +18,7 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
 	 * @return transaction
 	 */
 	@Query(nativeQuery = true, value = "select * from transaction where transaction_reference = ?")
-	Optional<Transaction> getTransactionByRef(Long txnRef);
+	Optional<List<Transaction>> getTransactionByRef(Long txnRef);
 
 	/**
 	 * gets balance in account

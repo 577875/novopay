@@ -1,9 +1,6 @@
 package com.example.ewallet.exceptions;
 
-/**
- * @author Deepak Garg
- *
- */
+
 
 /** Given User not available */
 public class UserNotFoundException extends Exception {

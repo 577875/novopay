@@ -1,9 +1,6 @@
 package com.example.ewallet.exceptions;
 
-/**
- * @author Deepak Garg
- *
- */
+
 
 /** Exception when balance insufficient */
 public class BalanceLowException extends Exception {

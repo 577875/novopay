@@ -6,10 +6,6 @@ import java.util.stream.Collectors;
 import com.example.ewallet.datatransferobject.TransactionDTO;
 import com.example.ewallet.models.Transaction;
 
-/**
- * @author Deepak Garg
- *
- */
 
 /** The Class to map Database Objects and Data Transfer Objects */
 public class TransactionMapper {

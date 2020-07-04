@@ -1,5 +1,6 @@
 package com.example.ewallet.walletapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,9 +86,9 @@ public class UserAccountController {
 		return new ResponseEntity<UserAccountDTO>(UserAccountMapper.doToDTO(saved), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/passbook")
+	@GetMapping("/{userAccountId}/passbook")
 	@ApiOperation(value = "get PassBook by UserId", response = List.class, tags = "getPassBook")
-	public ResponseEntity getUserPassbook(@PathVariable("id") Long id) {
+	public ResponseEntity getUserPassbook(@PathVariable("userAccountId") Long id) {
 		List<Transaction> passbook;
 		try {
 			passbook = transactionService.transactionsByUserAccountID(id);
@@ -95,5 +96,17 @@ public class UserAccountController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<TransactionDTO>>(TransactionMapper.doToDTOList(passbook), HttpStatus.OK);
+	}
+
+	@GetMapping("/{transactionRefId}/transaction")
+	@ApiOperation(value = "get transaction by transactionId", response = List.class, tags = "getPassBook")
+	public ResponseEntity getTransactionReference(@PathVariable("transactionRefId") Long id) {
+		List<Transaction> transactionList = new ArrayList<>();
+		try {
+			transactionList = transactionService.transactionByRef(id);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<TransactionDTO>>(TransactionMapper.doToDTOList(transactionList), HttpStatus.OK);
 	}
 }

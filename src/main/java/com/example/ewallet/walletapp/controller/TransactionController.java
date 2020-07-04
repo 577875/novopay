@@ -1,5 +1,6 @@
 package com.example.ewallet.walletapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -7,11 +8,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.ewallet.datatransferobject.TransactionDTO;
 import com.example.ewallet.datatransferobject.mapper.TransactionMapper;
@@ -64,5 +61,19 @@ public class TransactionController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<List<TransactionDTO>>(TransactionMapper.doToDTOList(both), HttpStatus.OK);
+	}
+
+	@GetMapping("/{transactionRefId}/reverseTransaction")
+	@ApiOperation(value = "reverse transaction by transactionId", response = List.class, tags = "reverseTransaction")
+	public ResponseEntity reverseTransactionReference(@PathVariable("transactionRefId") Long id) {
+		Transaction transaction;
+		List<Transaction> transactionList = new ArrayList<>();
+		try {
+			transaction = transactionService.reverseTransactionByRef(id);
+			transactionList.add(transaction);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<TransactionDTO>>(TransactionMapper.doToDTOList(transactionList), HttpStatus.OK);
 	}
 }

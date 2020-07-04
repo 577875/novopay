@@ -5,10 +5,6 @@ import java.util.Date;
 
 import io.swagger.annotations.ApiModelProperty;
 
-/**
- * @author Deepak Garg
- *
- */
 
 /** Client Facing Model of Transaction **/
 public class TransactionDTO {

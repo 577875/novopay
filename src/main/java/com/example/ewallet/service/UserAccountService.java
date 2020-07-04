@@ -5,10 +5,6 @@ import java.util.List;
 import com.example.ewallet.exceptions.UserNotFoundException;
 import com.example.ewallet.models.UserAccount;
 
-/**
- * @author Deepak Garg
- *
- */
 
 /** Service for Users */
 public interface UserAccountService {

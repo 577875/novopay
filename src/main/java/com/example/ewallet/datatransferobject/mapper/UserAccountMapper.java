@@ -8,11 +8,6 @@ import java.util.stream.Collectors;
 import com.example.ewallet.datatransferobject.UserAccountDTO;
 import com.example.ewallet.models.UserAccount;
 
-/**
- * @author Deepak Garg
- *
- */
-
 /** The Class to map Database Objects and Data Transfer Objects */
 public class UserAccountMapper {
 

@@ -8,11 +8,6 @@ import com.example.ewallet.exceptions.BalanceLowException;
 import com.example.ewallet.exceptions.UserNotFoundException;
 import com.example.ewallet.models.Transaction;
 
-/**
- * @author Deepak Garg
- *
- */
-
 /** Service for Transaction */
 public interface TransactionService {
 
@@ -56,7 +51,7 @@ public interface TransactionService {
 	 * @return transaction
 	 * @throws Exception
 	 */
-	Transaction transactionByRef(Long txnRef) throws Exception;
+	List<Transaction> transactionByRef(Long txnRef) throws Exception;
 
 	/**
 	 * @param accountId
@@ -78,4 +73,13 @@ public interface TransactionService {
 	 * @return list of parties involved if successful
 	 */
 	List<Transaction> transfer(TransactionDTO walletDTO, Long toUserAccountId, Long fromUserAccountId) throws UserNotFoundException,BalanceLowException;
+
+	/**
+	 * reverse transaction by ref id
+	 *
+	 * @param transaction reference id
+	 * @return transaction
+	 * @throws Exception
+	 */
+	Transaction reverseTransactionByRef(Long txnRef) throws Exception;
 }
